@@ -1,0 +1,101 @@
+<html>
+	<head>
+		<title>My first Three.js app</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+	</head>
+	<body>
+
+		<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+		<script src="js/three.min.js"></script>
+		<script src="js/OrbitControls.js"></script>
+		<script>
+
+		var scene, camera, renderer;
+		var geometry, material, mesh;
+		var objTie;
+		var objTieBig;
+		var factor = -0.01;
+
+		init();
+		animate();
+
+		function init() {
+
+			scene = new THREE.Scene();
+			
+			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+			camera.position.z = -30;
+
+			geometry = new THREE.BoxGeometry( 2, 2, 2 );
+			material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+
+			mesh = new THREE.Mesh( geometry, material );
+			scene.add( mesh );
+
+			// load the tie fighter model from clara.io      
+	      	var loader = new THREE.ObjectLoader();
+	      	loader.load("http://localhost:8888/tie.json", 
+	          	function ( obj ) {
+	          		objTieBig = obj;
+	              	scene.add( obj );
+	          	}   
+	      	);
+
+			// load the tie fighter model from clara.io      
+	      	loader = new THREE.ObjectLoader();
+	      	loader.load("http://localhost:8888/tie2.json", 
+	          	function ( obj ) {
+	          		obj.position.y = 15;
+	          		objTie = obj;
+	              	scene.add( obj );
+	          	}   
+	      	);
+
+			// // load the tie fighter model from clara.io      
+	  //     	loader = new THREE.ObjectLoader();
+	  //     	loader.load("http://localhost:8000/trek.json", 
+	  //         	function ( obj ) {
+	  //         		obj.position.y = 20;
+	  //             	scene.add( obj );
+	  //         	}   
+	  //     	);
+
+			renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+
+	    	// Add OrbitControls so that we can pan around with the mouse.
+		    controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+			document.body.appendChild( renderer.domElement );
+
+		}
+
+		// This function is called many times a second.  You do anything that
+		// needs to be updated, changed, moved here
+		function animate() {
+
+			requestAnimationFrame( animate );
+
+			// This is just for the box (only for this example)
+			mesh.rotation.x += 0.01;
+			mesh.rotation.y += 0.02;
+
+			objTie.rotation.x += 0.01;
+			objTie.rotation.y += 0.02;
+
+			objTieBig.rotation.x += 0.02;
+			objTieBig.rotation.y += 0.01;
+
+			// must do these two statements
+			renderer.render( scene, camera ); 
+			controls.update();
+
+		}
+
+		</script>
+
+	</body>
+</html>
