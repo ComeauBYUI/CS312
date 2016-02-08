@@ -25,7 +25,7 @@
 		function init() {
 
 			scene = new THREE.Scene();
-			
+
 			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
 			camera.position.z = -30;
 
@@ -35,32 +35,32 @@
 			mesh = new THREE.Mesh( geometry, material );
 			scene.add( mesh );
 
-			// load the tie fighter model from clara.io      
+			// load the tie fighter model from clara.io
 	      	var loader = new THREE.ObjectLoader();
-	      	loader.load("http://localhost:8888/tie.json", 
+	      	loader.load("tie.json",
 	          	function ( obj ) {
 	          		objTieBig = obj;
 	              	scene.add( obj );
-	          	}   
+	          	}
 	      	);
 
-			// load the tie fighter model from clara.io      
+			// load the tie fighter model from clara.io
 	      	loader = new THREE.ObjectLoader();
-	      	loader.load("http://localhost:8888/tie2.json", 
+	      	loader.load("tie2.json",
 	          	function ( obj ) {
 	          		obj.position.y = 15;
 	          		objTie = obj;
 	              	scene.add( obj );
-	          	}   
+	          	}
 	      	);
 
-			// // load the tie fighter model from clara.io      
+			// // load the tie fighter model from clara.io
 	  //     	loader = new THREE.ObjectLoader();
-	  //     	loader.load("http://localhost:8000/trek.json", 
+	  //     	loader.load("http://localhost:8000/trek.json",
 	  //         	function ( obj ) {
 	  //         		obj.position.y = 20;
 	  //             	scene.add( obj );
-	  //         	}   
+	  //         	}
 	  //     	);
 
 			renderer = new THREE.WebGLRenderer();
@@ -90,7 +90,7 @@
 			objTieBig.rotation.y += 0.01;
 
 			// must do these two statements
-			renderer.render( scene, camera ); 
+			renderer.render( scene, camera );
 			controls.update();
 
 		}
