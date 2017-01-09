@@ -1,0 +1,53 @@
+<html>
+   <head>
+      <title>2D canvas template for CS312</title>
+
+      <!-- Add a border to the canvas -->
+      <style>
+        body {
+           background: #eeeeee;
+        }
+
+        #canvas, #temple {
+           margin: 10px;
+           padding: 10px;
+           background: #ffffff;
+           border: thin inset #aaaaaa;
+        }
+      </style>
+
+    </head>
+
+  <body>
+    <p id="title">CS312 - Project 1</p>
+    <p>Match the image on the left with 2D drawing commands.
+      ZIP all of your files when you upload your project to I-Learn.</p>
+    <p>Student: -Full Name- </p>
+
+    <img id="temple" src="Temple.png" alt="" style="width:282px;height:400px;">
+
+    <canvas id='canvas' width='282' height='400'>
+      Canvas not supported
+    </canvas>
+
+
+    <script>
+      console.log('Hello World');
+
+      // This web site will help you with this project
+      // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes
+
+      // Temple silhouette image
+      // https://openclipart.org/detail/142003/salt-lake-temple-silhouette
+
+      var can = document.getElementById("canvas");
+      var ctx = can.getContext("2d");
+
+      // TODO add your drawing code here (You can create JS objects if you want)
+
+
+    </script>
+
+
+  </body>
+</html>

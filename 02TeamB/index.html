@@ -1,0 +1,69 @@
+<html>
+   <head>
+      <title>2D canvas template for CS312</title>
+
+      <!-- Add a border to the canvas -->
+      <style>
+        body {
+           background: #eeeeee;
+        }
+
+        canvas, img {
+           margin: 4px;
+           padding: 4px;
+           background: #8f8f8f;
+           border: thin inset #aaaaaa;
+        }
+      </style>
+
+    </head>
+
+  <body>
+    <p id="title">CS312 - Project 1</p>
+    <p>Match the flag on the left with 2D drawing commands</p>
+    <p>Student: -Full Name- </p>
+
+    <img id="monaco" src="monaco.gif" alt="" style="width:225px;height:150px;">
+    <canvas id='canvas2' width='225' height='150'>Canvas not supported</canvas>
+    <br />
+
+    <img id="green" src="Greenland.png" alt="" style="width:225px;height:150px;">
+    <canvas id='canvas1' width='225' height='150'>Canvas not supported</canvas>
+    <br />
+
+    <img id="norway" src="norway.png" alt="" style="width:225px;height:150px;">
+    <canvas id='canvas3' width='225' height='150'>Canvas not supported</canvas>
+    <br />
+
+    <img id="usa" src="USA.gif" alt="" style="width:225px;height:150px;">
+    <canvas id='canvas4' width='225' height='150'>Canvas not supported</canvas>
+
+    <script>
+      console.log('Hello World');
+
+      // This web site will help you with this project
+      // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes
+
+      // Temple silhouette image
+      // https://openclipart.org/detail/142003/salt-lake-temple-silhouette
+
+      var can1 = document.getElementById("canvas1");
+      var ctx1 = can1.getContext("2d");
+
+      var can2 = document.getElementById("canvas2");
+      var ctx2 = can2.getContext("2d");
+
+      var can3 = document.getElementById("canvas3");
+      var ctx3 = can3.getContext("2d");
+
+      var can4 = document.getElementById("canvas4");
+      var ctx4 = can4.getContext("2d");
+
+      // TODO add your drawing code here (You can create JS objects if you want)
+
+
+    </script>
+
+
+  </body>
+</html>
