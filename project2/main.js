@@ -4,7 +4,7 @@
  * This is the main file for the team project.  It contains the main() function
  * and the global variables.
  *
- * You MUST use the cs312Ctx object to do all of your drawing.
+ * You MUST use the cs312Ctx object to do all of your drawing
  *
  ****************************************************************************/
 
