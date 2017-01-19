@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Astriods</title>
+
+    <!-- Add a border to the canvas -->
+    <style>
+      body {
+         background: #eeeeee;
+      }
+
+      #canvas {
+         margin: 10px;
+         padding: 10px;
+         background: #ffffff;
+         border: thin inset #aaaaaa;
+      }
+    </style>
+
+</head>
+<body onload="main()">
+
+  <p id="title">Asteroids project CS312</p>
+  <p>Student: -Full Name- </p>
+
+  <canvas id='canvas' width='400' height=' 400'>
+    Canvas not supported
+  </canvas>
+
+  <!-- <button id="start">Restart game</button> -->
+  <p></p>
+
+  <button id="start">StartGame</button>
+  <button id="rotateUp">rotate +</button>
+  <button id="rotateDown">rotate -</button>
+
+  <!-- scripts/objects for the game -->
+  <script src="utils.js"></script>
+  <script src="cs312Ctx.js"></script>
+  <script src="point.js"></script>
+  <script src="star.js"></script>
+  <script src="bullet.js"></script>
+  <script src="vector.js"></script>
+  <script src="rock.js"></script>
+  <script src="matrix.js"></script>
+  <script src="ship.js"></script>
+
+  <!-- This is the last script to be loaded -->
+  <script src="astro.js"></script>
+
+</body>
+</html>
