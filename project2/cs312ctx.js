@@ -20,7 +20,6 @@ context.  You must write the code to do it yourself (if you need them)
      // Defaults
      this.fillStyle = "black";
      this.ctx.setTransform(1, 0, 0, 1, 0, 0);
-     this.setFont('20px Arial');
  };
 
  /* ***************************************************************************
