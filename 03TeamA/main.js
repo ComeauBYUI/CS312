@@ -67,7 +67,7 @@ function main() {
   var mat3 = mat1.multiply(mat2, false);
   mat1.log('mat1'); // [1,2,3,4,5,6,7,8,1]
   mat2.log('mat2'); // [2,3,4,5,6,7,8,9,1]
-  mat3.log('mat3'); // [36,42,21,81,96,57,62,78,1]
+  mat3.log('mat3'); // [36,42,21,81,96,57,62,81,1]
 
   // translate Append option
   mat.scale(2, 3, false);
