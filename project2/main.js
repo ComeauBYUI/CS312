@@ -4,7 +4,7 @@
  * This is the main file for the team project.  It contains the main() function
  * and the global variables.
  *
- * You MUST use the cs312Ctx object to do all of your drawing
+ * You MUST use the cs312Ctx object to do all of your drawing.
  *
  ****************************************************************************/
 
@@ -24,8 +24,6 @@ var heightHalf = canvasHeight / 2;
  * draw grid
  ****************************************************************************/
 function drawGrid(ctx) {
-  // TODO - display a grid
-
   var mat = new Matrix();
   mat.translate(widthHalf, heightHalf);
 
@@ -71,7 +69,7 @@ function draw2() {
 
   drawGrid(ctx);
 
-  // Draw a square
+  // Draw a square - do not change the points
   var points = [];
   points.push(new Point(-10, -10));
   points.push(new Point(10, -10));
@@ -79,7 +77,7 @@ function draw2() {
   points.push(new Point(-10, 10));
   points.push(new Point(-10, -10));
 
-  // TODO - create and setup a matrix for drawing
+  // create mat to Draw the square in the center of the grid
 
   ctx.drawLines(mat, points, 'red');
 }
@@ -93,7 +91,17 @@ function draw3() {
 
   drawGrid(ctx);
 
-  // TODO - add your code here - rotate by 30 degrees
+  // Draw a square - do not change the points
+  var points = [];
+  points.push(new Point(40, 40));
+  points.push(new Point(60, 40));
+  points.push(new Point(60, 60));
+  points.push(new Point(40, 60));
+  points.push(new Point(40, 40));
+
+  // create mat to move square to center of grid and rotate 30 degrees
+
+  ctx.drawLines(mat, points, 'red');
 }
 
 /*****************************************************************************
@@ -105,8 +113,17 @@ function draw4() {
 
   drawGrid(ctx);
 
-  // TODO - add your code here. rotate 30 degrees, scale by 4
+  // Draw a square - do not change the points
+  var points = [];
+  points.push(new Point(140, 140));
+  points.push(new Point(160, 140));
+  points.push(new Point(160, 160));
+  points.push(new Point(140, 160));
+  points.push(new Point(140, 140));
 
+  // create mat to move square to center of grid, rotate 30 degrees, scale by 4
+
+  ctx.drawLines(mat, points, 'red');
 }
 
 /*****************************************************************************

@@ -4,10 +4,10 @@
  * Drawing Context for CS312
  */
 
-/* ##########################################################################
-You cannot use the scale(), translate() or rotate() functions of the canvas
-context.  You must write the code to do it yourself (if you need them)
-#############################################################################*/
+ /* ##########################################################################
+ You cannot use the scale(), translate() or rotate() functions of the canvas
+ context.  You must write the code to do it yourself (if you need them)
+ #############################################################################*/
 
  /* ***************************************************************************
   * Constructor
@@ -17,7 +17,7 @@ context.  You must write the code to do it yourself (if you need them)
      this.can = canvas;
      this.ctx = canvas.getContext("2d");
 
-     // Defaults
+     // Defaults - leave alone
      this.fillStyle = "black";
      this.ctx.setTransform(1, 0, 0, 1, 0, 0);
  };
@@ -42,6 +42,18 @@ cs312Context.prototype = {
   },
 
   // ********************
+  // text functions
+  // ********************
+
+  drawText: function(text, x, y) {
+      this.ctx.fillText(text, x, y);
+  },
+
+  setFont: function(fontText) {
+      this.ctx.font = fontText;
+  },
+
+  // ********************
   // drawing functions
   // ********************
 
@@ -53,18 +65,16 @@ cs312Context.prototype = {
 
     // TODO - write the code to display lines from the points array.
     //      - note that the mat variable might be null
-
   },
 
-  drawPoints: function(mat, points, color) {
 
+  drawPoints: function(mat, points, color) {
     // mat - matrix
     // points - array of Point objects
-    // color - color of the lines
+    // color - color of the points (2 x 2) pixels
 
     // TODO - write the code to display points from the points array.
     //      - note that the mat variable might be null
-
   },
 
   strokeStyle: function(style) {
