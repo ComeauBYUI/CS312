@@ -120,7 +120,7 @@ function loop() {
 function main() {
 
   // Move the objects to the center
-  ctx.translate(100 + canvasWidth / 2, canvasHeight / 2);
+  ctx.translate(canvasWidth / 2, canvasHeight / 2);
 
   console.log('canvasWidth = ' + canvasWidth);
   console.log('canvasHeight = ' + canvasHeight);
