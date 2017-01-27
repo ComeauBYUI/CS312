@@ -15,8 +15,6 @@
      this.ctx.setTransform(1, 0, 0, 1, 0, 0);
      this.setFont('12px Arial');
 
-     this.scaleMat = new Matrix();
-     this.rotateMat = new Matrix();
      this.translateMat = new Matrix();
  };
 
@@ -56,14 +54,6 @@ cs312Context.prototype = {
   // Matrix functions
   // ********************
 
-  scale: function(x, y) {
-    this.scaleMat.scale(x, y, false);
-  },
-
-  rotation: function(angle) {
-    this.rotateMat.rotate(angle, false);
-  },
-
   translate: function(x, y) {
     this.translateMat.translate(x, y, false);
   },
@@ -80,8 +70,6 @@ cs312Context.prototype = {
       finalMat.multiply(mat);
 
     // apply context matrixes to points
-    finalMat.multiply(this.scaleMat);
-    finalMat.multiply(this.rotateMat);
     finalMat.multiply(this.translateMat);
 
     // apply given matrix to points
@@ -110,8 +98,6 @@ cs312Context.prototype = {
       finalMat.multiply(mat);
 
     // apply context matrixes to poin ts
-    finalMat.multiply(this.scaleMat);
-    finalMat.multiply(this.rotateMat);
     finalMat.multiply(this.translateMat);
 
     // apply given matrix to points
@@ -129,9 +115,7 @@ cs312Context.prototype = {
     if (mat != null)
       finalMat.multiply(mat);
 
-    // apply context matrixes to poin ts
-    finalMat.multiply(this.scaleMat);
-    finalMat.multiply(this.rotateMat);
+      // apply context matrixes to poin ts
     finalMat.multiply(this.translateMat);
 
     pos.applyMatrix(finalMat);
