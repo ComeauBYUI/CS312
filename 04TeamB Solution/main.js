@@ -10,15 +10,6 @@ var canvasHeight = canvas.height;
 var gameBoardMin = -canvasWidth / 2;
 var gameBoardMax = canvasHeight / 2;
 
-var rotateLeft = 0;
-var rotateRight = 0;
-
-var scaleFactor = 1;
-var scaleFactorDiff = 0.02
-
-var shearFactor = 0;
-var shearFactorDiff = 1
-
 const BALLCOUNT = 1;    // max is 9 with the current position
 const BALLRADIUS = 50;
 var balls = [];
@@ -28,11 +19,12 @@ var balls = [];
  ****************************************************************************/
 function moveAll() {
 
+  // Move everyone
   for (var i = 0; i < balls.length; i++) {
     balls[i].advance();
   }
 
-  // bounce
+  // detect hits
   for (var i = 0; i < balls.length; i++) {
     for (var j = i + 1; j < balls.length; j++) {
       var dist = balls[i].pos.distance(balls[j].pos);

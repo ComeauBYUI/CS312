@@ -10,15 +10,6 @@ var canvasHeight = canvas.height;
 var gameBoardMin = -canvasWidth / 2;
 var gameBoardMax = canvasHeight / 2;
 
-var rotateLeft = 0;
-var rotateRight = 0;
-
-var scaleFactor = 1;
-var scaleFactorDiff = 0.02
-
-var shearFactor = 0;
-var shearFactorDiff = 1
-
 const BALLCOUNT = 2;    // max is 9 with the current position
 const BALLRADIUS = 50;
 var balls = [];
@@ -27,6 +18,8 @@ var balls = [];
  * move and detect hits all
  ****************************************************************************/
 function moveAll() {
+
+  // TODO - impliment this function
 
   // Move all circles
 
@@ -85,5 +78,5 @@ function main() {
   console.log('gameBoardMax = ' + gameBoardMax);
 
   // 30 times a second - note change it if you need to debug your code
-  setInterval(loop, 1000 / 30);
+  setInterval(loop, 1000 / 3);
 }

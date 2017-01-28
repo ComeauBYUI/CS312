@@ -3,8 +3,10 @@
  ***************************************************************************/
 
 var Vector = function(dx, dy) {
+  // Make them floats
   this.dx = 0.0;
   this.dy = 0.0;
+
   this.dx = dx;
   this.dy = dy;
 };

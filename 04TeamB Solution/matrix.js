@@ -238,48 +238,6 @@ Matrix.prototype = {
     return this;
   },
 
-  setReflect: function() {
-    this.v[0][0] = -1;
-    this.v[0][1] = 0;
-    this.v[0][2] = 0;
-
-    this.v[1][0] = 0;
-    this.v[1][1] = -1;
-    this.v[1][2] = 0;
-
-    this.v[2][0] = 0;
-    this.v[2][1] = 0;
-    this.v[2][2] = 1;
-  },
-
-  setReflectX: function() {
-    this.v[0][0] = 1;
-    this.v[0][1] = 0;
-    this.v[0][2] = 0;
-
-    this.v[1][0] = 0;
-    this.v[1][1] = -1;
-    this.v[1][2] = 0;
-
-    this.v[2][0] = 0;
-    this.v[2][1] = 0;
-    this.v[2][2] = 1;
-  },
-
-  setReflectY: function() {
-    this.v[0][0] = -1;
-    this.v[0][1] = 0;
-    this.v[0][2] = 0;
-
-    this.v[1][0] = 0;
-    this.v[1][1] = 1;
-    this.v[1][2] = 0;
-
-    this.v[2][0] = 0;
-    this.v[2][1] = 0;
-    this.v[2][2] = 1;
-  },
-
   log: function (title) {
     if (title != null) {
       console.log('Matrix: ' + title + ' [' + this.v + ']');
