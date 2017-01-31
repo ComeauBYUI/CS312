@@ -1,0 +1,78 @@
+<html>
+	<head>
+		<title>My first Three.js app</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+</head>
+<body>
+
+	<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+	<script src="../js/three.min.js"></script>
+
+	<script>
+
+		// Note!!! you must have a sub folder called "js" at the same directory level
+		//         as this folder.
+
+		// Change what you need to complete the project.  Please keep the camera object, but you
+		// can change where the camera is to show your objects in your scene.
+
+		var scene, camera, renderer;
+		var geometry, material, mesh;
+		var rotation = 0;
+
+		init();
+		animate();
+
+		function init() {
+
+			// Create the main scene for the 3D drawing
+			scene = new THREE.Scene();
+
+			// Every scene needs a camera
+			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+			camera.position.z = 100;
+
+			// Allows us to see the axis - you can remove it if you want
+			object = new THREE.AxisHelper( 50 );
+			object.position.set( 0, 0, 0 );
+			scene.add( object );
+
+			// Add objects into the scene
+			geometry = new THREE.BoxGeometry( 20, 20, 20 );
+			material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+
+			// a mesh needs the geometry (aka lines and points) and material (aka surface)
+			mesh = new THREE.Mesh( geometry, material );
+			scene.add( mesh );
+
+			// the renderer renders the scene using the objects, lights and camera
+			renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+
+			// Attach the threeJS renderer to the HTML page
+			document.body.appendChild( renderer.domElement );
+
+		}
+
+		// This is the game/animation loop
+		function animate() {
+
+			requestAnimationFrame( animate );
+
+			rotation += 0.01;
+			// Change to what you need for the project
+			camera.position.y = 20;
+			camera.position.x = Math.sin(rotation) * 50;
+			camera.position.z = Math.cos(rotation) * 50;
+			camera.lookAt( scene.position ); // the origin
+
+			renderer.render( scene, camera );
+		}
+
+</script>
+
+</body>
+</html>
