@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<title>My first Three.js app</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+</head>
+<body>
+
+	<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+	<script src="../js/three.min.js"></script>
+
+	<script>
+		"use strict"
+
+		// Note!!! you must have a sub folder called "js" at the same directory level
+		//         as this folder.
+
+		var scene, camera, renderer;
+		var geometry, material, mesh;
+
+		init();
+		animate();
+
+		function init() {
+
+			// Create the main scene for the 3D drawing
+			scene = new THREE.Scene();
+
+			// Every scene needs a camera
+			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+			camera.position.z = 600;
+
+			// TODO - add cubes to your scene
+
+
+			// TODO - add point lights
+
+
+			// the renderer renders the scene using the objects, lights and camera
+			renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+
+			// Attach the threeJS renderer to the HTML page
+			document.body.appendChild( renderer.domElement );
+
+		}
+
+		// This is the game/animation loop
+		function animate() {
+
+			requestAnimationFrame( animate );
+
+			// TODO - move the camera
+
+			// TODO - move the lights
+
+			renderer.render( scene, camera );
+		}
+
+</script>
+
+</body>
+</html>
