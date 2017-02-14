@@ -1,0 +1,122 @@
+<html>
+	<head>
+		<title>My first Three.js app</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+</head>
+<body>
+
+	<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+	<script src="../js/three.min.js"></script>
+
+	<script>
+		"use strict"
+
+		// Note!!! you must have a sub folder called "js" at the same directory level
+		//         as this folder.
+
+		const MODE_NORMAL = 1;
+		const MODE_SPIN = 2;
+
+		var scene, camera, renderer;
+		var rotationCamera = 0;
+		var mode = MODE_NORMAL;
+		var spinRow = 0;
+		var spinCol = 0;
+
+		init();
+		animate();
+
+		function init() {
+
+			// Create the main scene for the 3D drawing
+			scene = new THREE.Scene();
+
+			// Every scene needs a camera
+			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+			camera.position.z = 100;
+
+			// TODO - create your objects here
+			/*
+				- Create 27 objects in a rubric square structure.
+				- Add space between the objects.
+				- Create the following objects (1 or more for each)
+					- BoxGeometry
+					- CircleGeometry
+					- ConeGeometry
+					- CylinderGeometry
+					- DodecahedronGeometry
+					- IcosahedronGeometry
+					- LatheGeometry
+					- OctahedronGeometry
+					- ParametricGeometry
+					- PlaneGeometry
+					- RingGeometry
+					- ShapeGeometry
+					- SphereGeometry
+					- TetrahedronGeometry
+					- TorusGeometry
+					- TorusKnotGeometry
+				- Use different colors for the 27 objects.
+				- Add any lights that you need to show your objects.
+				- Decide on the material types that you want.
+			*/
+
+			var axisHelper = new THREE.AxisHelper( 50 );
+			scene.add( axisHelper );
+
+			// the renderer renders the scene using the objects, lights and camera
+			renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+
+			// Attach the threeJS renderer to the HTML page
+			document.body.appendChild( renderer.domElement );
+
+		}
+
+		// This is the game/animation loop
+		function animate() {
+
+			requestAnimationFrame( animate );
+
+			switch (mode) {
+				case MODE_NORMAL:
+					var timeToSwitch = Math.floor((Math.random() * 100) + 1);
+					if (timeToSwitch % 20 == 0) {
+						// Start spinning a row and column
+						spinRow = Math.floor(Math.random() * 3);	// [0..2]
+						spinCol = Math.floor(Math.random() * 3);	// [0..2]
+						mode = MODE_SPIN;
+
+						// TODO - add any code or functions you want to call here
+					}
+
+					break;
+
+				case  MODE_SPIN:
+					// TODO - add want you need to do to spin row and col around
+					//      - Note, you can't spin all at once, this code in this
+					//        case statement will need to be called for every step
+					//        of the spin.  We should spin the row and col by
+					//        a rotation change of 0.01.  You can decide the direction
+					//        of the spin.
+					// TODO - when you finish spinning, set mode to MODE_NORMAL
+					break;
+			}
+
+			// rotate the camera
+			rotationCamera += 0.005;
+			camera.position.y = 20;
+			camera.position.x = Math.sin(rotationCamera) * 100;
+			camera.position.z = Math.cos(rotationCamera) * 100;
+			camera.lookAt( scene.position );
+
+			renderer.render( scene, camera );
+		}
+
+</script>
+
+</body>
+</html>
