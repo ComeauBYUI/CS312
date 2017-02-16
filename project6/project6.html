@@ -17,14 +17,39 @@
 		// Note!!! you must have a sub folder called "js" at the same directory level
 		//         as this folder.
 
+		var M_PI = 3.14159;
+
+		function deg2rad(value) {
+		    return ((M_PI / 180.0) * (value));
+		}
+
+		function rad2deg(value) {
+		    return ((value) * (180.0 / M_PI));
+		}
+
+		function getRandomInt(min, max) {
+		  min = Math.ceil(min);
+		  max = Math.floor(max);
+		  return Math.floor(Math.random() * (max - min)) + min;
+		}
+
+		// Global Variables
+
 		const MODE_NORMAL = 1;
 		const MODE_SPIN = 2;
 
 		var scene, camera, renderer;
+		var geometry, material, mesh;
+		var light1, light2, light3;
 		var rotationCamera = 0;
+		var rotationPL1 = 0;
+		var rotationPL2 = 0;
+		var rotationPL3 = 0;
 		var mode = MODE_NORMAL;
-		var spinRow = 0;
-		var spinCol = 0;
+		var blockGroup;
+		var blocks = [];
+		var rotationGroup;
+		var spinRowCol;
 
 		init();
 		animate();
@@ -36,7 +61,7 @@
 
 			// Every scene needs a camera
 			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-			camera.position.z = 100;
+			camera.position.z = 600;
 
 			// TODO - create your objects here
 			/*
@@ -59,12 +84,34 @@
 					- TetrahedronGeometry
 					- TorusGeometry
 					- TorusKnotGeometry
-				- Use different colors for the 27 objects.
+				- Use different colors or materials for the 27 objects.
+				- Space objects so you can see each object.
 				- Add any lights that you need to show your objects.
 				- Decide on the material types that you want.
+				- It might be best to add your objects to an array that
+				  you can later group together.
 			*/
 
-			var axisHelper = new THREE.AxisHelper( 50 );
+			geometry = new THREE.BoxGeometry( 50, 50, 50 );
+			material = new THREE.MeshPhongMaterial( { color: 0xffffff, wireframe: false } );
+
+			var spacing = 70;
+			for (var x = -1; x < 2; x++) {
+				for (var y = -1; y < 2; y++) {
+					for (var z = -1; z < 2; z++) {
+						mesh = new THREE.Mesh( geometry, material );
+						blocks.push(mesh);
+						mesh.position.set(x * spacing, y * spacing, z * spacing);
+
+						scene.add( mesh );
+					}
+				}
+			}
+
+			var light = new THREE.AmbientLight( 0xf0f0f0 ); // soft white light
+			scene.add( light );
+
+			var axisHelper = new THREE.AxisHelper( 200 );
 			scene.add( axisHelper );
 
 			// the renderer renders the scene using the objects, lights and camera
@@ -85,12 +132,37 @@
 				case MODE_NORMAL:
 					var timeToSwitch = Math.floor((Math.random() * 100) + 1);
 					if (timeToSwitch % 20 == 0) {
-						// Start spinning a row and column
-						spinRow = Math.floor(Math.random() * 3);	// [0..2]
-						spinCol = Math.floor(Math.random() * 3);	// [0..2]
+
+						// Start spinning a row or a column
+						var turnRow = Math.floor(Math.random() * 2) == 0;
+						spinRowCol = Math.floor(Math.random() * 3);	// [0..2]
 						mode = MODE_SPIN;
 
+						rotationGroup = 0;
 						// TODO - add any code or functions you want to call here
+						// TODO - create your group of the right objects depending
+						//        on the row/col and if it's a row or col
+						//      - Add the group to the scene
+
+						blockGroup = new THREE.Group();
+
+						switch (spinRowCol) {
+							// Example of rotating
+							case 0:
+								blockGroup.add(blocks[0]);
+								blockGroup.add(blocks[9]);
+								blockGroup.add(blocks[18]);
+								blockGroup.add(blocks[3]);
+								blockGroup.add(blocks[12]);
+								blockGroup.add(blocks[21]);
+								blockGroup.add(blocks[6]);
+								blockGroup.add(blocks[15]);
+								blockGroup.add(blocks[24]);
+
+								break;
+						}
+
+						scene.add(blockGroup);
 					}
 
 					break;
@@ -100,18 +172,30 @@
 					//      - Note, you can't spin all at once, this code in this
 					//        case statement will need to be called for every step
 					//        of the spin.  We should spin the row and col by
-					//        a rotation change of 0.01.  You can decide the direction
-					//        of the spin.
+					//        a rotation change of 1 degree. (use deg2rad())
+					//        You can decide the direction of the spin.
+
 					// TODO - when you finish spinning, set mode to MODE_NORMAL
+
+					rotationGroup += 1;
+					var rads = deg2rad(rotationGroup);
+					blockGroup.rotation.z = rads;
+
+					// TODO - free the group when finished rotation
+					if (rotationGroup > 360) {
+						blockGroup = [];
+						mode = MODE_NORMAL;
+					}
+
 					break;
 			}
 
-			// rotate the camera
+			// Change to what you need for the project
 			rotationCamera += 0.005;
-			camera.position.y = 20;
-			camera.position.x = Math.sin(rotationCamera) * 100;
-			camera.position.z = Math.cos(rotationCamera) * 100;
-			camera.lookAt( scene.position );
+			camera.position.y = 100;
+			camera.position.x = Math.sin(rotationCamera) * 500;
+			camera.position.z = Math.cos(rotationCamera) * 500;
+			camera.lookAt( scene.position ); // the origin
 
 			renderer.render( scene, camera );
 		}
